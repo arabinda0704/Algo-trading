@@ -1,0 +1,34 @@
+DataSet contains 15min candles of NSE:BANKNIFTY24FEBFUT symbol from 29th December to 25th January
+
+T1. Calculate the exponential moving average with span 10 and 20 using ewm(span=X).mean() on the close price and add the values in the columns named "ema_10" and "ema_20" for each row (15min)
+T2. Calculate the previous_day_high using max() funtion and previous_day_low using min() from the previous day for each row (15min)
+T3. Calculate the ema_10 and ema_20 on close price for 5 min dataset
+T4. Create a new dataset named "CE" filtering both 15min and 5min datasets above where below condition satisfies
+
+	(i) historical_data_15min['ema_10'] > historical_data_15min['ema_20']
+        (ii) close > historical_data_15min['prev_days_high']
+        (iii) historical_data_5min['ema_10'] > historical_data_5min['ema_20']
+        (iv) historical_data_5min['close'] > historical_data_5min['ema_10']
+
+T5. Create a new dataset named "PE" filtering both 15min and 5min datasets above where below condition satisfies
+
+	(i) historical_data_15min['ema_10'] < historical_data_15min['ema_20']
+        (ii) close < historical_data_15min['prev_days_low']
+        (iii) historical_data_5min['ema_10'] < historical_data_5min['ema_20']
+        (iv) historical_data_5min['close'] < historical_data_5min['ema_10']
+
+T6. Exclude all the rows of "CE" and "PE" which are before start_time = "9:45:00" and after stop_time = "15:00:00"
+
+T7. Calculate stike price and add a cloumn named "strike" for each row of CE using below formula
+    strike = round(float(close_price), -2) - 200
+  
+    Calculate string symbol and add a cloumn named "symbol" of each row of CE using below formula
+    symbol = "NSE:BANKNIFTY24FEB" + str(strike) + "CE"
+ 
+T8. Calculate stike price add a cloumn named "strike" for each row of PE using below formula
+    strike = round(float(close_price), -2) + 200
+
+    Calculate string symbol and add a cloumn named "symbol" of each row of PE using below formula
+    symbol = "NSE:BANKNIFTY24FEB" + str(strike) + "PE"
+
+T9. list all the unique symbols for CE and PE
