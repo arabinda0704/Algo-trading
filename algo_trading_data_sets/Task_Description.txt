@@ -32,3 +32,18 @@ T8. Calculate stike price add a cloumn named "strike" for each row of PE using b
     symbol = "NSE:BANKNIFTY24FEB" + str(strike) + "PE"
 
 T9. list all the unique symbols for CE and PE
+
+T10. For each row in CE, buy the "symbol" at the close price from the symbol dataset at the same timestamp.
+    and then try to sell it when below condition satisfies:
+     i) got 10 point price gain ( type point_gain)
+     ii) when 1_min_close < 1min_ema_20 ( type 1min_ema20)
+     iii) reached a threshold time of 15min ( type threshold ) 
+    capture the buy_price, sell_price, sell_type(point_gain, 1min_20ema or threshold) ce_sell and profit_or_loss for each row of CE
+
+T11. For each row in PE, buy the "symbol" at the close price from the symbol dataset at the same timestamp.
+    and then try to sell it when below condition satisfies:
+     i) got 10 point price gain ( type point_gain)
+     ii) when 1_min_close > 1min_ema_20 ( type 1min_ema20)
+     iii) reached a threshold time of 15min ( type threshold )
+    capture the buy_price, sell_price, sell_type(point_gain, 1min_20ema or threshold) and profit_or_loss for each row of PE
+ 
